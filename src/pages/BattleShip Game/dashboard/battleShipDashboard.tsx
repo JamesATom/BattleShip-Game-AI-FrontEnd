@@ -42,6 +42,7 @@ export default function BattleShipDashBoard(props: any) {
             navigate('/', { replace: true });
         };
         
+        // window.history.pushState(null, '', window.location.pathname);
         window.addEventListener('popstate', handlePopstate);
     
         return () => {
