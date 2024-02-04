@@ -42,13 +42,18 @@ export default function BattleShipDashBoard(props: any) {
             navigate('/', { replace: true });
         };
         
-        // window.history.pushState(null, '', window.location.pathname);
         window.addEventListener('popstate', handlePopstate);
     
         return () => {
             window.removeEventListener('popstate', handlePopstate);
         };
     }, []);
+
+    React.useEffect(() => {
+        setRows(data.map((d: any) => 
+            createData(d.picture, d.name, d.score)
+        ));
+    }, [subscriptionData]);
 
     const handleSort = () => {
         const newDirection = sortDirection === 'asc' ? 'desc' : 'asc';
