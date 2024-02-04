@@ -42,7 +42,6 @@ export default function BattleShipDashBoard(props: any) {
             navigate('/', { replace: true });
         };
         
-        // window.history.pushState(null, '', window.location.pathname);
         window.addEventListener('popstate', handlePopstate);
     
         return () => {
@@ -55,7 +54,7 @@ export default function BattleShipDashBoard(props: any) {
             createData(d.picture, d.name, d.score)
         ));
     }, [subscriptionData]);
-    
+
     const handleSort = () => {
         const newDirection = sortDirection === 'asc' ? 'desc' : 'asc';
         setSortDirection(newDirection);
