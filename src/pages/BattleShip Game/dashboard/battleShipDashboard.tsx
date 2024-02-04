@@ -49,12 +49,6 @@ export default function BattleShipDashBoard(props: any) {
         };
     }, []);
 
-    React.useEffect(() => {
-        setRows(data.map((d: any) => 
-            createData(d.picture, d.name, d.score)
-        ));
-    }, [subscriptionData]);
-
     const handleSort = () => {
         const newDirection = sortDirection === 'asc' ? 'desc' : 'asc';
         setSortDirection(newDirection);
