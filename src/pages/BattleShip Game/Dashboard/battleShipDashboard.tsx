@@ -35,25 +35,20 @@ export default function BattleShipDashBoard(props: any) {
     const [rows, setRows] = React.useState(data.map((d: any) => 
         createData(d.picture, d.name, d.score)
     ));
-    
+
     React.useEffect(() => {
         const handlePopstate = (event: any) => {
             if (event.state != null) return;
             navigate('/', { replace: true });
         };
         
+        // window.history.pushState(null, '', window.location.pathname);
         window.addEventListener('popstate', handlePopstate);
     
         return () => {
             window.removeEventListener('popstate', handlePopstate);
         };
     }, []);
-
-    React.useEffect(() => {
-        setRows(data.map((d: any) => 
-            createData(d.picture, d.name, d.score)
-        ));
-    }, [subscriptionData]);
 
     const handleSort = () => {
         const newDirection = sortDirection === 'asc' ? 'desc' : 'asc';
