@@ -53,7 +53,7 @@ export default function BattleShipDashBoard(props: any) {
         setRows(data.map((d: any) => 
             createData(d.picture, d.name, d.score)
         ));
-    }, [subscriptionData]);
+    }, []); // there is subscriptionData variable inside dependancy array 
 
     const handleSort = () => {
         const newDirection = sortDirection === 'asc' ? 'desc' : 'asc';
