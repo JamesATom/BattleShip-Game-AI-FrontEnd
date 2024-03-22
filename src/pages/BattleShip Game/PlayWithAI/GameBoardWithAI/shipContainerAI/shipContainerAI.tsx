@@ -2,8 +2,11 @@ import React from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
+import { SET_SHIP_POSITIONS_AI_MUTATION } from '../../../../../utils/graphqlQuery/gql';
+import { useMutation } from '@apollo/client';
 
 export default function ShipContainerAI(props: any) {
+    const [setShipPositionsAI, { error: mutationError }] = useMutation(SET_SHIP_POSITIONS_AI_MUTATION);
     const { 
         ships, orientation, 
         positionSetObject, 
@@ -13,6 +16,12 @@ export default function ShipContainerAI(props: any) {
         setOpen } = props;
     const [selectedShip, setSelectedShip] = React.useState(null);
     const [isReady, setIsReady] = React.useState(false);
+
+    React.useEffect(() => {
+        if (mutationError) {
+            console.log(mutationError);
+        }
+    }, [mutationError]);
 
     React.useEffect(() => {
         if (positionSetObject.size == 15) {
@@ -31,6 +40,24 @@ export default function ShipContainerAI(props: any) {
 
     const handleClick = () => {
         console.log('hello from container AI');
+        setShipPositionsAI({
+            variables: {
+                data: {
+                    userId: sessionStorage.getItem('userId')!,
+                    shipPositions: String(Array.from(positionSetObject)),
+                }
+            }
+        })
+        .then((response) => {
+            if (response.data.setShipPositionsAI.statusCode == 200) {
+                sessionStorage.setItem('myTurn', 'true');
+                setAlertText(response.data.setShipPositionsAI.message);
+                setOpen(true);
+            } 
+        })
+        .catch((error) => {
+            console.log("Network error in shipsContainerAI.tsx: ", error);
+        });
     }
 
     return (

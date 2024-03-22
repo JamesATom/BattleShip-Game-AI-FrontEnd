@@ -40,8 +40,17 @@ export const LEAVE_ROOM_MUTATION = gql`
 `;
 
 export const SET_SHIP_POSITIONS_MUTATION = gql`
-    mutation SetShipPositionsMutation($data: SetShipPositionsInput!) {
+    mutation SetShipPositionsMutation($data: SetShipPositionsAIInput!) {
         setShipPositions(data: $data) {
+            message,
+            statusCode
+        }
+    }
+`;
+
+export const SET_SHIP_POSITIONS_AI_MUTATION = gql`
+    mutation SetShipPositionsAIMutation($data: SetShipPositionsAIInput!) {
+        setShipPositionsAI(data: $data) {
             message,
             statusCode
         }
