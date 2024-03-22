@@ -3,12 +3,13 @@ import { getMainDefinition } from '@apollo/client/utilities';
 import { createClient } from 'graphql-ws';
 import { GraphQLWsLink } from '@apollo/client/link/subscriptions';
 
+// https://battleship-game-james-3cb6c991d5f4.herokuapp.com/graphql
 const httpLink = new HttpLink({
-    uri: 'https://battleship-game-james-3cb6c991d5f4.herokuapp.com/graphql',
+    uri: 'https://battleship-game-ai-backend.onrender.com/graphql',
 });
 
 const wsClient = createClient({
-    url: 'wss://battleship-game-james-3cb6c991d5f4.herokuapp.com/graphql',
+    url: 'wss://battleship-game-ai-backend.onrender.com/graphql',
 });
 
 const wsLink = new GraphQLWsLink(wsClient);
