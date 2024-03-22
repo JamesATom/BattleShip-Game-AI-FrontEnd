@@ -9,7 +9,6 @@ import AIGameBoard from './pages/BattleShip Game/PlayWithAI/GameBoardWithAI/game
 import { PrivateRoute } from './privateRoute';
 import { useSubscription } from '@apollo/client';
 import { USER_SUBSCRIPTION } from './utils/graphqlQuery/gql';
-import { SpeedInsights } from '@vercel/speed-insights/react'
 
 function App() {
     const { data: subscriptionData, error: subscriptionError } = useSubscription(USER_SUBSCRIPTION);
@@ -71,8 +70,6 @@ function App() {
                 <Route path="*" element={<Navigate to="/" />} /> 
                 
             </Routes>
-
-            <SpeedInsights />
         </Router>
     );
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import ShipContainer from './shipsContainer/shipsContainer';
 import BoardOfSelf from './boardOfSelf/boardOfSelf';
 import BoardOfEnemy from './boardOfEnemy/boardOfEnemy';
-import { Ships } from './shipsContainer/shipsArray';
+import { Ships } from '../../../../utils/gameData/shipsArray';
 import Box from '@mui/material/Box';
 import Snackbar, { SnackbarCloseReason } from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
