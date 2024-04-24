@@ -8,7 +8,7 @@ const httpLink = new HttpLink({
 });
 
 const wsClient = createClient({
-    url: 'wss://localhost:8000/graphql',
+    url: 'ws://localhost:8000/graphql',
 });
 
 const wsLink = new GraphQLWsLink(wsClient);
