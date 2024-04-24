@@ -3,7 +3,7 @@ import ReactDom from 'react-dom/client';
 import App from './App.tsx';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { ApolloProvider } from '@apollo/client';
-import { apolloClientNest } from './utils/apolloClient';
+import { apolloClient } from './utils/apolloClient';
 import { GOOGLE_CLIENT_ID_QUERY } from './utils/graphqlQuery/gql.ts';
 
 const root = ReactDom.createRoot(document.getElementById('root') as HTMLElement);
@@ -13,7 +13,7 @@ function Main() {
 
     React.useEffect(() => {
         if (!googleClientID) {
-            apolloClientNest.query({ query: GOOGLE_CLIENT_ID_QUERY })
+            apolloClient.query({ query: GOOGLE_CLIENT_ID_QUERY })
                 .then((result) => {
                     setGoogleClientID(result.data.googleClientID.clientID);
                 })
@@ -26,7 +26,7 @@ function Main() {
     return (
         <React.StrictMode>
             <GoogleOAuthProvider clientId={googleClientID}>
-                <ApolloProvider client={apolloClientNest}>
+                <ApolloProvider client={apolloClient}>
                     <App />
                 </ApolloProvider>
             </GoogleOAuthProvider>

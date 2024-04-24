@@ -1,6 +1,5 @@
 import { gql } from '@apollo/client';
 
-
 // Queries
 export const GOOGLE_CLIENT_ID_QUERY = gql`
     query {
@@ -40,17 +39,8 @@ export const LEAVE_ROOM_MUTATION = gql`
 `;
 
 export const SET_SHIP_POSITIONS_MUTATION = gql`
-    mutation SetShipPositionsMutation($data: SetShipPositionsAIInput!) {
+    mutation SetShipPositionsMutation($data: SetShipPositionsInput!) {
         setShipPositions(data: $data) {
-            message,
-            statusCode
-        }
-    }
-`;
-
-export const SET_SHIP_POSITIONS_AI_MUTATION = gql`
-    mutation SetShipPositionsAIMutation($data: SetShipPositionsAIInput!) {
-        setShipPositionsAI(data: $data) {
             message,
             statusCode
         }

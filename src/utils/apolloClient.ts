@@ -3,26 +3,17 @@ import { getMainDefinition } from '@apollo/client/utilities';
 import { createClient } from 'graphql-ws';
 import { GraphQLWsLink } from '@apollo/client/link/subscriptions';
 
-const httpLinkNest = new HttpLink({
-    uri: 'http://localhost:8000/graphql', // Nest.js backend
+const httpLink = new HttpLink({
+    uri: 'https://battleship-backend-h67kj.ondigitalocean.app/graphql',
 });
 
-const wsClientNest = createClient({
-    url: 'ws://localhost:8000/graphql', // Nest.js backend
+const wsClient = createClient({
+    url: 'wss://battleship-backend-h67kj.ondigitalocean.app/graphql',
 });
 
-// const httpLinkDjango = new HttpLink({
-//     uri: 'http://localhost:5000/graphql', // Django backend
-// });
+const wsLink = new GraphQLWsLink(wsClient);
 
-// const wsClientDjango = createClient({
-//     url: 'ws://localhost:5000/graphql', // Django backend
-// });
-
-const wsLinkNest = new GraphQLWsLink(wsClientNest);
-// const wsLinkDjango = new GraphQLWsLink(wsClientDjango);
-
-const splitLinkNest = split(
+const splitLink = split(
     ({ query }) => {
         const definition = getMainDefinition(query);
         return (
@@ -30,28 +21,13 @@ const splitLinkNest = split(
             definition.operation === 'subscription'
         );
     },
-    wsLinkNest,
-    httpLinkNest,
+    wsLink,
+    httpLink,
 );
 
-// const splitLinkDjango = split(
-//     ({ query }) => {
-//         const definition = getMainDefinition(query);
-//         return (
-//             definition.kind === 'OperationDefinition' &&
-//             definition.operation === 'subscription'
-//         );
-//     },
-//     wsLinkDjango,
-//     httpLinkDjango,
-// );
-
-export const apolloClientNest = new ApolloClient({
-    link: splitLinkNest,
+export const apolloClient = new ApolloClient({
+    link: splitLink,
     cache: new InMemoryCache(),
 });
 
-// export const apolloClientDjango  = new ApolloClient({
-//     link: splitLinkDjango,
-//     cache: new InMemoryCache(),
-// });
+

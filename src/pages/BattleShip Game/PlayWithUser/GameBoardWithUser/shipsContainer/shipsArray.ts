@@ -1,0 +1,31 @@
+export const Ships = [{
+    id: 5,
+    name: 'Carrier',
+    size: 5,
+    amount: 1, 
+    placed: false
+}, {
+    id: 4,
+    name: 'Submarine',
+    size: 4,
+    amount: 1, 
+    placed: false
+}, {
+    id: 3,
+    name: 'Battleship',
+    size: 3,
+    amount: 1, 
+    placed: false
+}, {
+    id: 2,
+    name: 'Cruiser',
+    size: 2,
+    amount: 1, 
+    placed: false
+}, {
+    id: 1,
+    name: 'Destroyer',
+    size: 1,
+    amount: 1, 
+    placed: false
+}];
