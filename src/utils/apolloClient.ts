@@ -4,11 +4,11 @@ import { createClient } from 'graphql-ws';
 import { GraphQLWsLink } from '@apollo/client/link/subscriptions';
 
 const httpLink = new HttpLink({
-    uri: 'https://battleship-backend-h67kj.ondigitalocean.app/graphql',
+    uri: 'http://localhost:8000/graphql',
 });
 
 const wsClient = createClient({
-    url: 'wss://battleship-backend-h67kj.ondigitalocean.app/graphql',
+    url: 'wss://localhost:8000/graphql',
 });
 
 const wsLink = new GraphQLWsLink(wsClient);
