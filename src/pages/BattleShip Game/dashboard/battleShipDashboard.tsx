@@ -37,12 +37,6 @@ export default function BattleShipDashBoard(props: any) {
     ));
 
     React.useEffect(() => {
-        setRows(data.map((d: any) => 
-            createData(d.picture, d.name, d.score)
-        ));
-    }, [subscriptionData.userAdded]); // there is subscriptionData variable inside dependancy array
-    
-    React.useEffect(() => {
         const handlePopstate = (event: any) => {
             if (event.state != null) return;
             navigate('/', { replace: true });
@@ -54,6 +48,12 @@ export default function BattleShipDashBoard(props: any) {
             window.removeEventListener('popstate', handlePopstate);
         };
     }, []);
+
+    React.useEffect(() => {
+        setRows(data.map((d: any) => 
+            createData(d.picture, d.name, d.score)
+        ));
+    }, []); // there is subscriptionData variable inside dependancy array 
 
     const handleSort = () => {
         const newDirection = sortDirection === 'asc' ? 'desc' : 'asc';
